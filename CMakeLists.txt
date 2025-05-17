@@ -12,7 +12,7 @@ check_language(CUDA)
 set(CMAKE_CUDA_FLAGS ${CMAKE_CUDA_FLAGS} "-lineinfo")
 
 set(CMAKE_CXX_STANDARD 20)
-set(CUDA_COMPUTE_CAPABILITY 120)
+set(CMAKE_CUDA_ARCHITECTURES 80 89)
 
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${PROJECT_SOURCE_DIR}/src) # includes src in search path
@@ -22,5 +22,5 @@ include_directories(${PROJECT_SOURCE_DIR}/src) # includes src in search path
 aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC)
 
 add_executable(main main.cu ${SRC})
-target_include_directories(main PRIVATE ${CMAKE_SOURCE_DIR}/cutlass/include)
+target_include_directories(main PRIVATE ${CMAKE_SOURCE_DIR}/cutlass/include ${CMAKE_SOURCE_DIR}/cutlass/tools/util/include)
 target_link_libraries(main ${CUDA_LIBRARIES} ${CUDA_CUBLAS_LIBRARIES} cuda)
