@@ -1,0 +1,1 @@
+- must edit BASE FOLDER's c_cpp_properties.json
